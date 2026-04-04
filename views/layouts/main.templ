@@ -1,0 +1,91 @@
+package layouts
+
+templ Layout(title string,) {
+	<!DOCTYPE html>
+	<html class="light" lang="en">
+		<head>
+			<meta charset="utf-8"/>
+			<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover"/>
+			<title>{ title }</title>
+			<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+			<script>
+				tailwind.config = {
+					darkMode: "class",
+					theme: {
+						extend: {
+							colors: {
+								"primary": "#3d0eb4",
+								"on-primary": "#ffffff",
+								"primary-container": "#5535cb",
+								"primary-fixed": "#e6deff",
+								"primary-fixed-dim": "#cabeff",
+								"on-primary-fixed-variant": "#4723be",
+								"secondary": "#515f74",
+								"on-secondary": "#ffffff",
+								"secondary-container": "#d5e3fc",
+								"surface": "#faf8ff",
+								"on-surface": "#131b2e",
+								"surface-variant": "#dae2fd",
+								"surface-container": "#eaedff",
+								"surface-container-low": "#f2f3ff",
+								"surface-container-high": "#e2e7ff",
+								"surface-container-highest": "#dae2fd",
+								"surface-container-lowest": "#ffffff",
+								"tertiary-fixed": "#ffdbcf",
+								"on-tertiary-fixed": "#380d00",
+								"outline": "#7a7488",
+							},
+							fontFamily: {
+								"headline": ["Manrope"],
+								"body": ["Inter"],
+							},
+							borderRadius: {"xl": "0.5rem", "2xl": "1rem", "3xl": "1.5rem", "full": "9999px"},
+						},
+					},
+				}
+			</script>
+			<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@700;800&display=swap" rel="stylesheet"/>
+			<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+      <script type="module" src="https://cdn.jsdelivr.net/gh/starfederation/datastar@1.0.0-RC.8/bundles/datastar.js"></script>
+			<style>
+				.material-symbols-outlined {
+					font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+					display: inline-block;
+					vertical-align: middle;
+				}
+				body { -webkit-tap-highlight-color: transparent; }
+			</style>
+		</head>
+		<body class="bg-surface font-body text-on-surface overflow-y-auto">
+			<header class="sticky top-0 w-full z-50 flex justify-between items-center h-16 px-6 bg-slate-50/85 backdrop-blur-md border-b border-indigo-100/20 shadow-sm">
+				<div class="flex flex-col">
+					<span class="text-xl font-black text-primary tracking-tighter">Optimal Royalty Gas Limited</span>
+					<span class="text-[9px] font-bold text-secondary opacity-60 uppercase tracking-widest leading-none">Cashier Pro</span>
+				</div>
+				<div class="flex items-center gap-4">
+					<div class="flex items-center gap-1 bg-tertiary-fixed text-on-tertiary-fixed px-3 py-1 rounded-full text-[10px] font-bold animate-pulse">
+						<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'opsz' 18">sync</span>
+						ONLINE
+					</div>
+				</div>
+			</header>
+			<main id="main-content" class="pt-16 pb-40 px-4 h-screen flex flex-col">
+				{ children... }
+			</main>
+			<nav class="fixed bottom-0 w-full h-16 flex justify-around items-center bg-slate-50/90 backdrop-blur-xl border-t border-indigo-100/20 px-4 pb-safe z-50">
+				<a href="/" class="flex flex-col items-center gap-1 text-secondary opacity-60">
+					<span class="material-symbols-outlined">browse</span>
+					<span class="text-[10px] font-bold uppercase tracking-widest">Inventory</span>
+				</a>
+				<a href="/sales" class="flex flex-col items-center gap-1 text-primary">
+					<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1">calculate</span>
+					<span class="text-[10px] font-bold uppercase tracking-widest">Calculator</span>
+				</a>
+				<a href="/cart" class="flex flex-col items-center gap-1 text-secondary opacity-60">
+					<span class="material-symbols-outlined">add_shopping_cart</span>
+					<span class="text-[10px] font-bold uppercase tracking-widest">Cart</span>
+				</a>
+			</nav>
+		</body>
+	</html>
+}

@@ -1,0 +1,87 @@
+package views
+
+import (
+    "github.com/CyBueze/org/views/layouts"
+)
+
+templ Calculator() {
+    @layouts.Layout("Calculator") {
+        <div class="min-h-screen bg-gray-50 p-4">
+            <!-- Main Container with Signals -->
+            <div 
+                class="max-w-md mx-auto"
+                data-signals="{
+                    mode: 'kg',
+                    inputValue: 0,
+                    pricePerKg: 500
+                }"
+            >
+                <!-- Header -->
+                <div class="mb-4">
+                    <h1 class="text-xl font-semibold">Sell Gas</h1>
+                    <p class="text-sm text-gray-500">Quick transaction</p>
+                </div>
+
+                <!-- Card -->
+                <div class="bg-white rounded-2xl shadow p-4 space-y-4">
+                    <!-- Toggle Buttons - Using data-on:click and data-class -->
+                    <div class="flex bg-gray-100 rounded-xl p-1">
+                        <button 
+                            data-on:click="$mode = 'kg'"
+                            data-class="{
+                                'bg-white shadow': $mode == 'kg',
+                                'text-gray-500': $mode != 'kg'
+                            }"
+                            class="flex-1 py-2 rounded-lg text-sm transition-all"
+                        >
+                            KG
+                        </button>
+                        <button 
+                            data-on:click="$mode = 'amount'"
+                            data-class="{
+                                'bg-white shadow': $mode == 'amount',
+                                'text-gray-500': $mode != 'amount'
+                            }"
+                            class="flex-1 py-2 rounded-lg text-sm transition-all"
+                        >
+                            ₦
+                        </button>
+                    </div>
+                    
+                    <!-- Computed Result - Updates automatically when mode or inputValue changes -->
+                    <div 
+                        data-computed:result="$mode == 'kg' ? '₦' + ($inputValue * $pricePerKg) : ($inputValue / $pricePerKg).toFixed(2) + ' kg'"
+                        class="bg-purple-50 p-3 rounded-xl">
+                        <p class="text-sm text-gray-500">Calculated</p>
+                        <p data-text="$result" class="text-xl font-semibold text-purple-700">
+                            0
+                        </p>
+                    </div>
+
+                    <!-- Input Field -->
+                    <div>
+                        <label class="text-sm text-gray-500">Enter Value</label>
+                        <input 
+                            type="number" 
+                            data-bind="inputValue"
+                            placeholder="0"
+                            class="w-full mt-1 p-3 border rounded-xl text-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
+                        />
+                    </div>
+
+                    <!-- Add to Cart Button -->
+                    <button 
+                        data-on:click="@post('/api/cart/add')"
+                        class="w-full bg-purple-600 text-white py-3 rounded-xl font-semibold hover:bg-purple-700 transition-colors"
+                    >
+                        Add to Cart
+                    </button>
+                </div>
+                
+                <div class="h-8">
+                
+                </div>
+            </div>
+        </div>
+    }
+}
