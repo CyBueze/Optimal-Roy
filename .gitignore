@@ -38,3 +38,5 @@ vendor/
 # Fly.io secrets (if any)
 .secrets/
 EOF
+
+cmd/seed
